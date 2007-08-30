@@ -80,7 +80,7 @@ Exec=%{_bindir}/lyx
 Icon=lyx
 Terminal=false
 Type=Application
-Categories=Qt;KDE;Office;X-MandrivaLinux-Office-Wordprocessors
+Categories=Qt;KDE;Office;X-MandrivaLinux-Office-Wordprocessors;
 EOF
 
 
