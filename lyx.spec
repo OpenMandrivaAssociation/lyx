@@ -1,6 +1,6 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.5.1
+Version:	1.5.2
 Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
@@ -58,19 +58,6 @@ mv %buildroot/%_bindir/%name %buildroot/%name
 popd
 mv %buildroot/%name %buildroot/%_bindir/%name
 
-#mdk menu
-mkdir -p $RPM_BUILD_ROOT/%{_menudir}
-cat >$RPM_BUILD_ROOT%{_menudir}/lyx <<EOF
-?package(lyx): command="%{_bindir}/lyx" \
-needs="X11" \
-icon="%name.png" \
-section="Office/Wordprocessors" \
-mimetypes="text/x-lyx" \
-title="LyX" \
-longtitle="TeX document processor - especially good at scientific documents" \
-xdg="true"
-EOF
-
 mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
 cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-lyx.desktop << EOF
 [Desktop Entry]
@@ -80,7 +67,7 @@ Exec=%{_bindir}/lyx
 Icon=lyx
 Terminal=false
 Type=Application
-Categories=Qt;KDE;Office;X-MandrivaLinux-Office-Wordprocessors;
+Categories=Qt;Office;WordProcessor;
 EOF
 
 
@@ -139,7 +126,6 @@ rm -rf $RPM_BUILD_ROOT
 %_mandir/man1/*
 #%_datadir/%name
 %_datadir/texmf/tex/latex/lyx
-%_menudir/%name
 %_liconsdir/%name.png
 %_iconsdir/%name.png
 %_miconsdir/%name.png
