@@ -21,7 +21,6 @@ Obsoletes: lyx-gtk
 
 Requires:	tetex tetex-latex tetex-dvips fonts-ttf-latex
 
-BuildRoot:	%_tmppath/%name-%version-%release-root
 License:	GPL
 
 %description
