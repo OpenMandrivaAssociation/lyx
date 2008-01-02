@@ -40,7 +40,6 @@ since the computer will take care of the look.
 %build
 # (tv) prevent qt3 stuff too fsck up using qt4 (eg: using wrong uic) when both
 # qt3 & qt4 are installed:
-. /etc/profile.d/qt4.sh
 qt4env
 
 %define common_opt --without-aiksaurus --enable-compression-support
