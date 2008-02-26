@@ -1,6 +1,6 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.5.3
+Version:	1.5.4
 Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
@@ -17,12 +17,12 @@ BuildRequires:	libboost-devel
 BuildRequires:	aspell-devel
 BuildRequires:	python
 BuildRequires:	ImageMagick
-Obsoletes: lyx-gtk
+Obsoletes:      lyx-gtk
 
 Requires:	tetex tetex-latex tetex-dvips fonts-ttf-latex
 
 BuildRoot:	%_tmppath/%name-%version-%release-root
-License:	GPL
+License:	GPLv2
 
 %description
 LyX is a modern approach of writing documents with a computer
@@ -43,7 +43,7 @@ since the computer will take care of the look.
 %define common_opt --without-aiksaurus --enable-compression-support
 mkdir qt-build
 pushd qt-build
-CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --with-qt-dir=/usr/lib/qt4 --with-qt-libraries=%{_prefix}/lib/qt4/%{_lib} --disable-rpath %common_opt
+CONFIGURE_TOP=.. %configure --with-frontend=qt4 --with-qt-dir=/usr/lib/qt4 --with-qt-libraries=%{_prefix}/lib/qt4/%{_lib} --disable-rpath %common_opt
 make
 popd
 
@@ -64,7 +64,7 @@ Exec=%{_bindir}/lyx
 Icon=lyx
 Terminal=false
 Type=Application
-Categories=Qt;Office;WordProcessor;
+Categories=Qt;Office;WordProcessor;X-MandrivaLinux-CrossDesktop;
 EOF
 
 
@@ -115,8 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %name.lang
 %defattr (-,root,root)
-%doc INSTALL README ANNOUNCE NEWS INSTALL.autoconf
-%doc UPGRADING COPYING 
+%doc README ANNOUNCE
 %_bindir/%name
 %_bindir/lyxclient
 %_bindir/tex2lyx
