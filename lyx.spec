@@ -1,7 +1,7 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.5.4
-Release:	%mkrel 3
+Version:	1.5.5
+Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
 Patch0:         lyx-1.5.4-fix-crash.patch
