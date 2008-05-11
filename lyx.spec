@@ -43,7 +43,7 @@ since the computer will take care of the look.
 %define common_opt --without-aiksaurus --enable-compression-support
 mkdir qt-build
 pushd qt-build
-CONFIGURE_TOP=.. %configure --with-frontend=qt4 --with-qt-dir=/usr/lib/qt4 --with-qt-libraries=%{_prefix}/lib/qt4/%{_lib} --disable-rpath %common_opt
+CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --with-qt-dir=/usr/lib/qt4 --with-qt-libraries=%{_prefix}/lib/qt4/%{_lib} --disable-rpath %common_opt
 make
 popd
 
