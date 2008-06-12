@@ -95,7 +95,9 @@ find $RPM_BUILD_ROOT%_datadir/%name -type d | sed -e "s@$RPM_BUILD_ROOT@%dir @g"
 #chrpath -d $RPM_BUILD_ROOT%_bindir/%name
 
 %post
+%if %mdkversion < 200900
 %update_menus
+%endif
 ## Fix the TeX file hash
 texhash
 ## Before configuring lyx for the local system 
@@ -107,8 +109,10 @@ fi
 cd %_datadir/lyx
 ./configure.py > /dev/null
 
+%if %mdkversion < 200900
 %postun
 %clean_menus
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
