@@ -1,7 +1,7 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
 Version:	1.5.6
-Release:	%mkrel 1
+Release:	%mkrel 2
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
 URL:		http://www.lyx.org/
@@ -22,7 +22,7 @@ Obsoletes:      lyx-gtk
 Requires:	tetex tetex-latex tetex-dvips fonts-ttf-latex
 
 BuildRoot:	%_tmppath/%name-%version-%release-root
-License:	GPLv2
+License:	GPLv2+
 
 %description
 LyX is a modern approach of writing documents with a computer
