@@ -1,6 +1,6 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.5.5
+Version:	1.5.6
 Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
@@ -43,7 +43,7 @@ since the computer will take care of the look.
 %define common_opt --without-aiksaurus --enable-compression-support
 mkdir qt-build
 pushd qt-build
-CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --with-qt-dir=/usr/lib/qt4 --with-qt-libraries=%{_prefix}/lib/qt4/%{_lib} --disable-rpath %common_opt
+CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --with-qt-dir=%{qt4dir} --with-qt-libraries=%{qt4lib} --disable-rpath %common_opt
 make
 popd
 
@@ -130,4 +130,3 @@ rm -rf $RPM_BUILD_ROOT
 %_iconsdir/%name.png
 %_miconsdir/%name.png
 %_datadir/applications/mandriva-lyx.desktop
-
