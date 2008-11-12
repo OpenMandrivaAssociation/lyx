@@ -4,6 +4,7 @@ Version:	1.6.0
 Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
+Patch0:		lyx-1.6.0-xdg_open.patch
 URL:		http://www.lyx.org/
 Group:		Office
 
@@ -20,6 +21,7 @@ BuildRequires:	ImageMagick
 Obsoletes:      lyx-gtk
 
 Requires:	tetex tetex-latex tetex-dvips fonts-ttf-latex
+Requires:	xdg-utils
 
 BuildRoot:	%_tmppath/%name-%version-%release-root
 License:	GPLv2+
@@ -37,6 +39,7 @@ since the computer will take care of the look.
 
 %prep
 %setup -q
+%patch0 -p1 -b .xdg-open
 
 %build
 
@@ -48,15 +51,15 @@ make
 popd
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 pushd qt-build
 %makeinstall_std
 mv %buildroot/%_bindir/%name %buildroot/%name
 popd
 mv %buildroot/%name %buildroot/%_bindir/%name
 
-mkdir -p $RPM_BUILD_ROOT%{_datadir}/applications
-cat > $RPM_BUILD_ROOT%{_datadir}/applications/mandriva-lyx.desktop << EOF
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-lyx.desktop << EOF
 [Desktop Entry]
 Name=LyX
 Comment=TeX document processor - especially good at scientific documents
@@ -69,30 +72,30 @@ EOF
 
 
 ## icons
-mkdir -p $RPM_BUILD_ROOT/%_liconsdir
-convert -size 48x48 development/Win32/packaging/icons/lyx_32x32.png $RPM_BUILD_ROOT/%_liconsdir/%name.png
-mkdir -p $RPM_BUILD_ROOT/%_iconsdir
-cp development/Win32/packaging/icons/lyx_32x32.png $RPM_BUILD_ROOT/%_iconsdir/%name.png
-mkdir -p $RPM_BUILD_ROOT/%_miconsdir
-convert -size 16x16 development/Win32/packaging/icons/lyx_32x32.png $RPM_BUILD_ROOT/%_miconsdir/%name.png
+mkdir -p %{buildroot}/%_liconsdir
+convert -size 48x48 development/Win32/packaging/icons/lyx_32x32.png %{buildroot}/%_liconsdir/%name.png
+mkdir -p %{buildroot}/%_iconsdir
+cp development/Win32/packaging/icons/lyx_32x32.png %{buildroot}/%_iconsdir/%name.png
+mkdir -p %{buildroot}/%_miconsdir
+convert -size 16x16 development/Win32/packaging/icons/lyx_32x32.png %{buildroot}/%_miconsdir/%name.png
 
 ## Set up the lyx-specific class files where TeX can see then
 TEXMF=%{_datadir}/texmf
-mkdir -p $RPM_BUILD_ROOT${TEXMF}/tex/latex
-cp -r $RPM_BUILD_ROOT%_datadir/lyx/tex $RPM_BUILD_ROOT${TEXMF}/tex/latex/lyx
-chmod +x $RPM_BUILD_ROOT%_datadir/lyx/configure.py
-rm -f $RPM_BUILD_ROOT%_bindir/listerrors
+mkdir -p %{buildroot}${TEXMF}/tex/latex
+cp -r %{buildroot}%_datadir/lyx/tex %{buildroot}${TEXMF}/tex/latex/lyx
+chmod +x %{buildroot}%_datadir/lyx/configure.py
+rm -f %{buildroot}%_bindir/listerrors
 
 %find_lang %name
-find $RPM_BUILD_ROOT%_datadir/%name -type f | sed -e "s@$RPM_BUILD_ROOT@@g" \
+find %{buildroot}%_datadir/%name -type f | sed -e "s@%{buildroot}@@g" \
 	-e "s@%_datadir/%name/doc/\(..\)_@%lang(\1) %_datadir/%name/doc/\1_@g" \
 	-e "s@\(%_datadir/%name/configure.py\)\$@%attr(755,root,root) \1@g" \
 	-e "s@\(%_datadir/%name/scripts/\)@%attr(755,root,root) \1@g" \
 	-e "s@\(%_datadir/%name/lyx2lyx/\)@%attr(755,root,root) \1@g" \
 	>> %name.lang
-find $RPM_BUILD_ROOT%_datadir/%name -type d | sed -e "s@$RPM_BUILD_ROOT@%dir @g" >> %name.lang
+find %{buildroot}%_datadir/%name -type d | sed -e "s@%{buildroot}@%dir @g" >> %name.lang
 
-#chrpath -d $RPM_BUILD_ROOT%_bindir/%name
+#chrpath -d %{buildroot}%_bindir/%name
 
 %post
 %if %mdkversion < 200900
@@ -115,7 +118,7 @@ cd %_datadir/lyx
 %endif
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files -f %name.lang
 %defattr (-,root,root)
