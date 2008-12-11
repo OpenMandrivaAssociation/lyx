@@ -18,7 +18,7 @@ BuildRequires:	tetex-dvips tetex-latex texinfo
 BuildRequires:	libboost-devel
 BuildRequires:	aspell-devel
 BuildRequires:	python
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 Obsoletes:      lyx-gtk
 
 Requires:	tetex tetex-latex tetex-dvips fonts-ttf-latex
