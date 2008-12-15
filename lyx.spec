@@ -1,11 +1,10 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.6.0
-Release:	%mkrel 2
+Version:	1.6.1
+Release:	%mkrel 1
 
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/%name-%version.tar.bz2
 Patch0:		lyx-1.6.0-xdg_open.patch
-Patch1:		lyx-1.6.0-configure.patch
 URL:		http://www.lyx.org/
 Group:		Office
 
@@ -41,7 +40,6 @@ since the computer will take care of the look.
 %prep
 %setup -q
 %patch0 -p1 -b .xdg-open
-%patch1 -p4 -b .configure
 
 %build
 
