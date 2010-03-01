@@ -1,7 +1,7 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
 Version:	1.6.5
-Release:	%mkrel 4
+Release:	%mkrel 5
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/1.6.x/%name-%version.tar.bz2
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
@@ -69,6 +69,7 @@ Icon=lyx
 Terminal=false
 Type=Application
 Categories=Qt;Office;WordProcessor;X-MandrivaLinux-CrossDesktop;
+MimeType=application/x-lyx;
 EOF
 
 
