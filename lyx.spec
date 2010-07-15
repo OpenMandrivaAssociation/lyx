@@ -1,6 +1,6 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.6.6.1
+Version:	1.6.7
 Release:	%mkrel 1
 Source:		ftp://ftp.lyx.org/pub/lyx/stable/1.6.x/%name-%version.tar.bz2
 # use xdg-open instead of hard coded applications to open files
@@ -43,12 +43,11 @@ since the computer will take care of the look.
 %patch0 -p1 -b .xdg-open
 
 %build
-
-%define common_opt --without-aiksaurus --enable-compression-support --without-included-boost
+%define common_opt --without-aiksaurus --without-included-boost
 mkdir qt-build
 pushd qt-build
-CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --with-qt-dir=%{qt4dir} --with-qt-libraries=%{qt4lib} --disable-rpath %common_opt
-make
+CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --disable-rpath %common_opt
+%make
 popd
 
 %install
