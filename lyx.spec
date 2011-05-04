@@ -1,11 +1,12 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	1.6.9
-Release:	%mkrel 3
-Source:		ftp://ftp.lyx.org/pub/lyx/stable/1.6.x/%name-%version.tar.bz2
+Version:	2.0.0
+Release:	%mkrel 1
+Source:		ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
-Patch0:		lyx-1.6.6.1-xdg_open.patch
+Patch0:		lyx-2.0.0-xdg_open.patch
+Patch1:		lyx-2.0.0-hunspell-13.patch
 URL:		http://www.lyx.org/
 Group:		Office
 
@@ -16,7 +17,7 @@ BuildRequires:	gettext
 BuildRequires:	ghostscript groff-for-man sgml-tools
 BuildRequires:	tetex-dvips tetex-latex texinfo
 BuildRequires:	libboost-devel
-BuildRequires:	aspell-devel
+BuildRequires:	hunspell-devel enchant-devel
 BuildRequires:	python
 BuildRequires:	imagemagick
 Obsoletes:      lyx-gtk
@@ -41,22 +42,19 @@ since the computer will take care of the look.
 %prep
 %setup -q
 %patch0 -p1 -b .xdg-open
+%patch1 -p0 -b .hunspell
 
 %build
-%define common_opt --without-aiksaurus --without-included-boost
-mkdir qt-build
-pushd qt-build
-CONFIGURE_TOP=.. %configure2_5x --with-frontend=qt4 --disable-rpath %common_opt
+autoreconf -fi -Iconfig
+%configure2_5x --with-frontend=qt4 --disable-rpath \
+	--without-included-boost \
+	-enable-optimization="%{optflags}" \
+	--with-enchant --with-hunspell
 %make
-popd
 
 %install
 rm -rf %{buildroot}
-pushd qt-build
 %makeinstall_std
-mv %buildroot/%_bindir/%name %buildroot/%name
-popd
-mv %buildroot/%name %buildroot/%_bindir/%name
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-lyx.desktop << EOF
