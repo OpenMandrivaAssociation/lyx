@@ -12,6 +12,7 @@ Group:		Office
 
 BuildRequires:	qt4-devel xpm-devel libjpeg-devel
 #BuildRequires:	chrpath
+BuildRequires:	gettext-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gettext
 BuildRequires:	ghostscript groff-for-man sgml-tools
