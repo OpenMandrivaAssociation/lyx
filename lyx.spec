@@ -58,7 +58,7 @@ rm -rf %{buildroot}
 %makeinstall_std
 
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-lyx.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/%{_real_vendor}-lyx.desktop << EOF
 [Desktop Entry]
 Name=LyX
 Comment=TeX document processor - especially good at scientific documents
@@ -132,4 +132,4 @@ rm -rf %{buildroot}
 %_liconsdir/%name.png
 %_iconsdir/%name.png
 %_miconsdir/%name.png
-%_datadir/applications/mandriva-lyx.desktop
+%_datadir/applications/%{_real_vendor}-lyx.desktop
