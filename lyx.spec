@@ -1,8 +1,8 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	2.0.2
-Release:	%mkrel 1
-Source:		ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
+Version:	2.0.3
+Release:	1
+Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.0.1-xdg_open.patch
@@ -47,7 +47,6 @@ autoreconf -fi -Iconfig
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 mkdir -p %{buildroot}%{_datadir}/applications
@@ -100,11 +99,7 @@ fi
 cd %{_datadir}/lyx
 ./configure.py > /dev/null
 
-%clean
-rm -rf %{buildroot}
-
 %files -f %{name}.lang
-%defattr (-,root,root)
 %doc README ANNOUNCE
 %{_bindir}/%{name}
 %{_bindir}/lyxclient
