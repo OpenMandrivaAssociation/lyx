@@ -1,3 +1,8 @@
+# Workaround for debuginfo bug
+%define __debug_install_post %nil
+%define debug_package %nil
+%global __debug_package 0
+
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
 Version:	2.0.3
@@ -48,6 +53,11 @@ autoreconf -fi -Iconfig
 
 %install
 %makeinstall_std
+
+# Workaround for debuginfo bug
+# /usr/lib/rpm/bin/debugedit: canonicalization unexpectedly shrank by one character
+# This should really really be removed when the bug is fixed
+strip %buildroot%_bindir/*
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-lyx.desktop << EOF
