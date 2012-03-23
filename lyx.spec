@@ -45,10 +45,13 @@ since the computer will take care of the look.
 
 %build
 autoreconf -fi -Iconfig
-%configure2_5x --with-frontend=qt4 --disable-rpath \
-	--without-included-boost \
-	-enable-optimization="%{optflags}" \
-	--with-enchant --with-hunspell
+%configure2_5x	--with-frontend=qt4 \
+		--disable-rpath \
+		--without-included-boost \
+		--enable-optimization="%{optflags}" \
+		--with-enchant \
+		--with-hunspell \
+		--disable-silent-rules
 %make
 
 %install
