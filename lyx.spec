@@ -42,9 +42,9 @@ since the computer will take care of the look.
 %prep
 %setup -q
 %patch0 -p1 -b .xdg-open
+autoreconf -fi -Iconfig
 
 %build
-autoreconf -fi -Iconfig
 %configure2_5x	--with-frontend=qt4 \
 		--disable-rpath \
 		--without-included-boost \
