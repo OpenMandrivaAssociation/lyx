@@ -1,7 +1,7 @@
 Name:		lyx
 Summary:	A word processor for the Desktop Environment
 Version:	2.0.3
-Release:	3
+Release:	4
 Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
