@@ -1,26 +1,36 @@
-Name:		lyx
 Summary:	A word processor for the Desktop Environment
-Version:	2.0.5
+Name:		lyx
+Version:	2.0.5.1
 Release:	1
+Group:		Office
+License:	GPLv2+
+URL:		http://www.lyx.org/
 Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.0.1-xdg_open.patch
-URL:		http://www.lyx.org/
-Group:		Office
-License:	GPLv2+
-BuildRequires:	qt4-devel >= 4:4.8.0-7 xpm-devel libjpeg-devel
+BuildRequires:	qt4-devel >= 4:4.8.0-7
+BuildRequires:	xpm-devel
+BuildRequires:	jpeg-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gettext
-BuildRequires:	ghostscript groff-for-man sgml-tools
-BuildRequires:	tetex-dvips tetex-latex texinfo
-BuildRequires:	libboost-devel
-BuildRequires:	hunspell-devel enchant-devel
+BuildRequires:	ghostscript
+BuildRequires:	groff-base
+BuildRequires:	sgml-tools
+BuildRequires:	tetex-dvips
+BuildRequires:	tetex-latex
+BuildRequires:	texinfo
+BuildRequires:	boost-devel
+BuildRequires:	hunspell-devel
+BuildRequires:	enchant-devel
 BuildRequires:	python
 BuildRequires:	imagemagick
 Obsoletes:	lyx-gtk
-Requires:	tetex tetex-latex tetex-dvips tetex-cmsuper fonts-ttf-latex 
+Requires:	tetex tetex-latex
+Requires:	tetex-dvips
+Requires:	tetex-cmsuper
+Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
 
 %description
@@ -40,13 +50,14 @@ since the computer will take care of the look.
 autoreconf -fi -Iconfig
 
 %build
-%configure2_5x	--with-frontend=qt4 \
-		--disable-rpath \
-		--without-included-boost \
-		--enable-optimization="%{optflags}" \
-		--with-enchant \
-		--with-hunspell \
-		--disable-silent-rules
+%configure2_5x \
+	--with-frontend=qt4 \
+	--disable-rpath \
+	--without-included-boost \
+	--enable-optimization="%{optflags}" \
+	--with-enchant \
+	--with-hunspell \
+	--disable-silent-rules
 %make
 
 %install
@@ -107,9 +118,10 @@ cd %{_datadir}/lyx
 %{_bindir}/%{name}
 %{_bindir}/lyxclient
 %{_bindir}/tex2lyx
-%{_mandir}/man1/*
+%{_datadir}/applications/mandriva-lyx.desktop
 %{_datadir}/texmf/tex/latex/lyx
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_miconsdir}/%{name}.png
-%{_datadir}/applications/mandriva-lyx.desktop
+%{_mandir}/man1/*
+
