@@ -50,6 +50,7 @@ since the computer will take care of the look.
 autoreconf -fi -Iconfig
 
 %build
+export PATH=$PATH:/usr/lib/qt4/bin/
 %configure2_5x \
 	--with-frontend=qt4 \
 	--disable-rpath \
