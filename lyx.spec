@@ -1,7 +1,7 @@
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
 Version:	2.0.5.1
-Release:	1
+Release:	2
 Group:		Office
 License:	GPLv2+
 URL:		http://www.lyx.org/
@@ -22,14 +22,12 @@ BuildRequires:	tetex-dvips
 BuildRequires:	tetex-latex
 BuildRequires:	texinfo
 BuildRequires:	boost-devel
-BuildRequires:	hunspell-devel
-BuildRequires:	enchant-devel
+BuildRequires:  pkgconfig(hunspell)
+BuildRequires:  pkgconfig(enchant)
 BuildRequires:	python
 BuildRequires:	imagemagick
 Obsoletes:	lyx-gtk
-Requires:	tetex tetex-latex
-Requires:	tetex-dvips
-Requires:	tetex-cmsuper
+Requires:	texlive-collection-latex
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
 
