@@ -4,32 +4,30 @@ Version:	2.0.5.1
 Release:	2
 Group:		Office
 License:	GPLv2+
-URL:		http://www.lyx.org/
-Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%name-%version.tar.xz
+Url:		http://www.lyx.org/
+Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%{name}-%{version}.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.0.1-xdg_open.patch
-BuildRequires:	qt4-devel >= 4:4.8.0-7
-BuildRequires:	xpm-devel
-BuildRequires:	jpeg-devel
-BuildRequires:	gettext-devel
 BuildRequires:	gcc-c++
 BuildRequires:	gettext
 BuildRequires:	ghostscript
 BuildRequires:	groff-base
-BuildRequires:	sgml-tools
-BuildRequires:	tetex-dvips
-BuildRequires:	tetex-latex
-BuildRequires:	texinfo
-BuildRequires:	boost-devel
-BuildRequires:  pkgconfig(hunspell)
-BuildRequires:  pkgconfig(enchant)
-BuildRequires:	python
 BuildRequires:	imagemagick
-Obsoletes:	lyx-gtk
-Requires:	texlive-collection-latex
+BuildRequires:	python
+BuildRequires:	sgml-tools
+BuildRequires:	texinfo
+BuildRequires:	texlive-collection-latex
+BuildRequires:	boost-devel
+BuildRequires:	gettext-devel
+BuildRequires:	jpeg-devel
+BuildRequires:	pkgconfig(hunspell)
+BuildRequires:	qt4-devel >= 4:4.8.0-7
+BuildRequires:	pkgconfig(enchant)
+BuildRequires:	pkgconfig(xpm)
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
+Requires:	texlive-collection-latex
 
 %description
 LyX is a modern approach of writing documents with a computer
@@ -44,7 +42,7 @@ since the computer will take care of the look.
 
 %prep
 %setup -q
-%patch0 -p1 -b .xdg-open
+%apply_patches
 autoreconf -fi -Iconfig
 
 %build
@@ -63,7 +61,7 @@ export PATH=$PATH:/usr/lib/qt4/bin/
 %makeinstall_std
 
 mkdir -p %{buildroot}%{_datadir}/applications
-cat > %{buildroot}%{_datadir}/applications/mandriva-lyx.desktop << EOF
+cat > %{buildroot}%{_datadir}/applications/lyx.desktop << EOF
 [Desktop Entry]
 Name=LyX
 Comment=TeX document processor - especially good at scientific documents
@@ -117,7 +115,7 @@ cd %{_datadir}/lyx
 %{_bindir}/%{name}
 %{_bindir}/lyxclient
 %{_bindir}/tex2lyx
-%{_datadir}/applications/mandriva-lyx.desktop
+%{_datadir}/applications/lyx.desktop
 %{_datadir}/texmf/tex/latex/lyx
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
