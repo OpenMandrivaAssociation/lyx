@@ -27,7 +27,7 @@ BuildRequires:	pkgconfig(enchant)
 BuildRequires:	pkgconfig(xpm)
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
-Requires:	texlive-collection-latex
+Requires:	texlive
 
 %description
 LyX is a modern approach of writing documents with a computer
