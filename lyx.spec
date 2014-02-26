@@ -1,7 +1,7 @@
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
 Version:	2.0.5.1
-Release:	6
+Release:	7
 Group:		Office
 License:	GPLv2+
 Url:		http://www.lyx.org/
@@ -28,6 +28,7 @@ BuildRequires:	pkgconfig(xpm)
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
 Requires:	texlive
+Requires:	texlive-scheme-full
 
 %description
 LyX is a modern approach of writing documents with a computer
