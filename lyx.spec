@@ -1,7 +1,7 @@
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
 Version:	2.0.5.1
-Release:	12
+Release:	13
 Group:		Office
 License:	GPLv2+
 Url:		http://www.lyx.org/
@@ -13,7 +13,7 @@ BuildRequires:	gettext
 BuildRequires:	ghostscript
 BuildRequires:	groff-base
 BuildRequires:	imagemagick
-BuildRequires:	python
+BuildRequires:	pkgconfig(python2)
 BuildRequires:	sgml-tools
 BuildRequires:	texinfo
 BuildRequires:	texlive-collection-latex
@@ -47,6 +47,7 @@ autoreconf -fi -Iconfig
 
 %build
 export PATH=$PATH:/usr/lib/qt4/bin/
+export PYTHON=%{__python2}
 %configure \
 	--with-frontend=qt4 \
 	--disable-rpath \
@@ -87,6 +88,9 @@ mkdir -p %{buildroot}${TEXMF}/tex/latex
 cp -r %{buildroot}%{_datadir}/lyx/tex %{buildroot}${TEXMF}/tex/latex/lyx
 chmod +x %{buildroot}%{_datadir}/lyx/configure.py
 rm -f %{buildroot}%{_bindir}/listerrors
+
+# (tpg) fix bug #1190
+sed -i -e "s,/usr/bin/env python,%{__python2},g" %{buildroot}%{_datadir}/lyx/configure.py
 
 %find_lang %{name}
 
