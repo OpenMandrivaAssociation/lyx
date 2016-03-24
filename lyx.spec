@@ -1,5 +1,3 @@
-%define _disable_lto 1
-
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
 Version:	2.1.4
@@ -11,6 +9,9 @@ Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.1.x/%{name}-%{version}.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.1.4-xdg_open.patch
+# weird but necessary to compare the supported qt version
+# see http://comments.gmane.org/gmane.editors.lyx.devel/137498
+BuildRequires:	bc
 BuildRequires:	gettext
 BuildRequires:	ghostscript
 BuildRequires:	groff-base
@@ -50,6 +51,7 @@ autoreconf -fi -Iconfig
 %build
 export PATH=$PATH:/usr/lib/qt4/bin/
 export PYTHON=%{__python2}
+
 %configure \
 	--with-frontend=qt4 \
 	--disable-rpath \
@@ -125,6 +127,7 @@ cd %{_datadir}/lyx
 %{_datadir}/texmf/tex/latex/lyx
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
+%{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_miconsdir}/%{name}.png
 %{_mandir}/man1/*
 
