@@ -1,14 +1,16 @@
+%define _disable_lto 1
+
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.0.5.1
-Release:	15
+Version:	2.1.4
+Release:	1
 Group:		Office
 License:	GPLv2+
 Url:		http://www.lyx.org/
-Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.0.x/%{name}-%{version}.tar.xz
+Source0:	ftp://ftp.lyx.org/pub/lyx/stable/2.1.x/%{name}-%{version}.tar.xz
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
-Patch0:		lyx-2.0.1-xdg_open.patch
+Patch0:		lyx-2.1.4-xdg_open.patch
 BuildRequires:	gettext
 BuildRequires:	ghostscript
 BuildRequires:	groff-base

@@ -1,2 +1,4 @@
-sources:
+removed_sources:
   lyx-2.0.5.1.tar.xz: a822e99484c1652c4df5df717819dd7048fcff75
+sources:
+  lyx-2.1.4.tar.xz: 956662191437685789a2ffc2eec3048a21d3e37b
