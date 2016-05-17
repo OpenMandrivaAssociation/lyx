@@ -1,7 +1,7 @@
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
 Version:	2.1.4
-Release:	1
+Release:	2
 Group:		Office
 License:	GPLv2+
 Url:		http://www.lyx.org/
