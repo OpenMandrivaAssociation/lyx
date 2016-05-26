@@ -1,8 +1,6 @@
-diff --git a/lib/configure.py b/lib/configure.py
-index 3a08c76..fe643c6 100644
---- a/lib/configure.py
-+++ b/lib/configure.py
-@@ -596,7 +596,7 @@ def checkFormatEntries(dtl_tools):
+--- lyx-2.2.0/lib/configure.py.0000~	2016-05-24 01:47:32.000000000 +0200
++++ lyx-2.2.0/lib/configure.py	2016-05-26 23:55:56.642406887 +0200
+@@ -594,7 +594,7 @@ def checkFormatEntries(dtl_tools):
  \Format tiff       tif     TIFF                   "" "%s"	"%s"	""	"image/tiff"
  \Format xbm        xbm     XBM                    "" "%s"	"%s"	""	"image/x-xbitmap"
  \Format xpm        xpm     XPM                    "" "%s"	"%s"	""	"image/x-xpixmap"'''
@@ -11,16 +9,16 @@ index 3a08c76..fe643c6 100644
      path, ie = checkEditorNoRC('a raster image editor', ['gimp-remote', 'gimp'], rc_entry = [imageformats])
      addToRC(imageformats % \
          (iv, ie, iv, ie, iv, ie, iv, ie, iv, ie, iv, ie, iv, ie, iv, ie, iv, ie, iv, ie) )
-@@ -635,7 +635,7 @@ def checkFormatEntries(dtl_tools):
+@@ -633,7 +633,7 @@ def checkFormatEntries(dtl_tools):
  \Format excel      xls    "Excel spreadsheet"      "" "" "%%"    "document"	"application/vnd.ms-excel"
- \Format oocalc     ods    "OpenOffice spreadsheet" "" "" "%%"    "document"	"application/vnd.oasis.opendocument.spreadsheet"'''])
+ \Format oocalc     ods    "OpenDocument spreadsheet" "" "" "%%"    "document"	"application/vnd.oasis.opendocument.spreadsheet"'''])
   #
 -    checkViewer('an HTML previewer', ['firefox', 'mozilla file://$$p$$i', 'netscape'],
-+    checkViewer('an HTML previewer', ['xdg-open', 'firefox', 'mozilla file://$$p$$i', 'netscape'],
++    checkViewer('an HTML previewer', ['xdg-open', 'firefox', 'chromium-browser-dev', 'mozilla file://$$p$$i', 'netscape'],
          rc_entry = [r'\Format xhtml      xhtml   "LyXHTML"              y "%%" ""    "document,menu=export"	"application/xhtml+xml"'])
   #
      checkEditor('a BibTeX editor', ['jabref', 'JabRef', \
-@@ -648,14 +648,14 @@ def checkFormatEntries(dtl_tools):
+@@ -646,14 +646,14 @@ def checkFormatEntries(dtl_tools):
      #
      #checkProg('a Postscript interpreter', ['gs'],
      #  rc_entry = [ r'\ps_command "%%"' ])
@@ -37,7 +35,7 @@ index 3a08c76..fe643c6 100644
  		    'gv', 'ghostview', 'AcroRd32', 'gsview64', 'gsview32'],
          rc_entry = [r'''\Format pdf        pdf    "PDF (ps2pdf)"          P  "%%"	""	"document,vector,menu=export"	""
  \Format pdf2       pdf    "PDF (pdflatex)"        F  "%%"	""	"document,vector,menu=export"	""
-@@ -666,14 +666,14 @@ def checkFormatEntries(dtl_tools):
+@@ -664,14 +664,14 @@ def checkFormatEntries(dtl_tools):
  \Format pdf7       pdf    "PDF (cropped)"         "" "%%"	""	"document,vector"	""
  \Format pdf8       pdf    "PDF (lower resolution)"         "" "%%"	""	"document,vector"	""'''])
      #
