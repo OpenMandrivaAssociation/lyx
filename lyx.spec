@@ -49,11 +49,12 @@ since the computer will take care of the look.
 autoreconf -fi -Iconfig
 
 %build
-export PATH=$PATH:/usr/lib/qt4/bin/
+export PATH=%{_qt5_bindir}:$PATH
 export PYTHON=%{__python2}
 
 %configure \
-	--with-frontend=qt4 \
+	--enable-qt5 \
+	--with-qt-dir=%_qt5_bindir \
 	--disable-rpath \
 	--without-included-boost \
 	--enable-optimization="%{optflags}" \
