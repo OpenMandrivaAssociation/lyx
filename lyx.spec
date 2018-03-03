@@ -32,6 +32,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(hunspell)
 BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Concurrent)
 BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	cmake(Qt5X11Extras)
