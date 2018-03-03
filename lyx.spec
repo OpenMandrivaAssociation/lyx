@@ -24,7 +24,10 @@ BuildRequires:	boost-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(hunspell)
-BuildRequires:	qt4-devel >= 4:4.8.0-7
+BuildRequires:	cmake(ECM)
+BuildRequires:	cmake(Qt5Core)
+BuildRequires:	cmake(Qt5Gui)
+BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	pkgconfig(enchant)
 BuildRequires:	pkgconfig(xpm)
 Requires:	fonts-ttf-latex 
