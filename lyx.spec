@@ -39,6 +39,7 @@ BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	cmake(Qt5Svg)
 BuildRequires:	pkgconfig(enchant)
 BuildRequires:	pkgconfig(xpm)
+BuildRequires:	pkgconfig(zlib)
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
 Requires:	texlive
