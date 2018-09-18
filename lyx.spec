@@ -135,6 +135,8 @@ cd %{_datadir}/lyx
 %{_bindir}/tex2lyx
 %{_datadir}/applications/lyx.desktop
 %{_datadir}/texmf/tex/latex/lyx
+%{_datadir}/%{name}/__pycache__
+%{_datadir}/%{name}/scripts/__pycache__
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.*
