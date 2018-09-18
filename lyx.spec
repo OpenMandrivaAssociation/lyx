@@ -1,14 +1,14 @@
-%define beta	rc1
+%define beta	%{nil}
 
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.3.0
+Version:	2.3.1
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
 %else
 Release:	1
-Source0:	ftp://ftp.lyx.org/pub/lyx/stable/%(echo %{version}|cut -d. -f1-2).x/%{name}-%{version}.tar.xz
+Source0:	ftp://ftp.lyx.org/pub/lyx/stable/%(echo %{version}|cut -d. -f1-2).x/%{name}-%{version}-2.tar.xz
 %endif
 Group:		Office
 License:	GPLv2+
