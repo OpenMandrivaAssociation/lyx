@@ -7,7 +7,7 @@ Version:	2.3.1
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
 %else
-Release:	1
+Release:	2
 Source0:	ftp://ftp.lyx.org/pub/lyx/stable/%(echo %{version}|cut -d. -f1-2).x/%{name}-%{version}-2.tar.xz
 %endif
 Group:		Office
