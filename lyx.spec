@@ -16,6 +16,7 @@ Url:		http://www.lyx.org/
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.1.4-xdg_open.patch
+Patch1:		lyx-2.3.2-boost-1.69.patch
 # weird but necessary to compare the supported qt version
 # see http://comments.gmane.org/gmane.editors.lyx.devel/137498
 BuildRequires:	bc
@@ -57,8 +58,7 @@ the author can concentrate on the contents of his writing,
 since the computer will take care of the look.
 
 %prep
-%setup -qn %{name}-%{version}%{beta}
-%apply_patches
+%autosetup -p1 -n %{name}-%{version}%{beta}
 autoreconf -fi -Iconfig
 
 %build
