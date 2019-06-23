@@ -2,7 +2,7 @@
 
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.3.2
+Version:	2.3.3
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
@@ -70,10 +70,10 @@ autoreconf -fi -Iconfig
 	--with-enchant \
 	--with-hunspell \
 	--disable-silent-rules
-%make QT_MOC=%{_libdir}/qt5/bin/moc QT_RCC=%{_libdir}/qt5/bin/rcc QT_UIC=%{_libdir}/qt5/bin/uic
+%make_build QT_MOC=%{_libdir}/qt5/bin/moc QT_RCC=%{_libdir}/qt5/bin/rcc QT_UIC=%{_libdir}/qt5/bin/uic
 
 %install
-%makeinstall_std
+%make_install
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/lyx.desktop << EOF
