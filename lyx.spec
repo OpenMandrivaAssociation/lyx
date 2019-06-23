@@ -2,7 +2,7 @@
 
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.3.2
+Version:	2.3.3
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
@@ -16,7 +16,7 @@ Url:		http://www.lyx.org/
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
 Patch0:		lyx-2.1.4-xdg_open.patch
-Patch1:		lyx-2.3.2-boost-1.69.patch
+#Patch1:		lyx-2.3.2-boost-1.69.patch
 # weird but necessary to compare the supported qt version
 # see http://comments.gmane.org/gmane.editors.lyx.devel/137498
 BuildRequires:	bc
@@ -70,10 +70,10 @@ autoreconf -fi -Iconfig
 	--with-enchant \
 	--with-hunspell \
 	--disable-silent-rules
-%make QT_MOC=%{_libdir}/qt5/bin/moc QT_RCC=%{_libdir}/qt5/bin/rcc QT_UIC=%{_libdir}/qt5/bin/uic
+%make_build QT_MOC=%{_libdir}/qt5/bin/moc QT_RCC=%{_libdir}/qt5/bin/rcc QT_UIC=%{_libdir}/qt5/bin/uic
 
 %install
-%makeinstall_std
+%make_install
 
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/lyx.desktop << EOF
