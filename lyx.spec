@@ -2,12 +2,12 @@
 
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.3.3
+Version:	2.3.4
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
 %else
-Release:	2
+Release:	1
 Source0:	ftp://ftp.lyx.org/pub/lyx/stable/%(echo %{version}|cut -d. -f1-2).x/%{name}-%{version}.tar.xz
 %endif
 Group:		Office
