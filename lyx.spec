@@ -2,7 +2,7 @@
 
 Summary:	A word processor for the Desktop Environment
 Name:		lyx
-Version:	2.3.4.3
+Version:	2.3.6
 %if "%{beta}" != ""
 Release:	0.%{beta}.1
 Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
@@ -38,7 +38,7 @@ BuildRequires:	cmake(Qt5Gui)
 BuildRequires:	cmake(Qt5Widgets)
 BuildRequires:	cmake(Qt5X11Extras)
 BuildRequires:	cmake(Qt5Svg)
-BuildRequires:	pkgconfig(enchant)
+BuildRequires:	pkgconfig(enchant-2)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	pkgconfig(zlib)
 Requires:	fonts-ttf-latex 
