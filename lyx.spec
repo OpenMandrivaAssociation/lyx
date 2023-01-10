@@ -58,7 +58,7 @@ the author can concentrate on the contents of his writing,
 since the computer will take care of the look.
 
 %prep
-%autosetup -p1 -n %{name}-%{version}%{beta}
+%autosetup -p1 -n %{name}-2.3.7
 autoreconf -fi -Iconfig
 
 %build
