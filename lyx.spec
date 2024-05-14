@@ -1,15 +1,10 @@
-%define beta	%{nil}
+#define beta	rc1
 
-Summary:	A word processor for the Desktop Environment
+Summary:	Word processor with a LaTeX backend
 Name:		lyx
-Version:	2.3.7.1
-%if "%{beta}" != ""
-Release:	0.%{beta}.1
-Source0:	ftp://ftp.lyx.org/pub/lyx/devel/lyx-%(echo %{version}|cut -d. -f1-2)/lyx-%{version}%{beta}/%{name}-%{version}%{beta}.tar.xz
-%else
-Release:	2
-Source0:	ftp://ftp.lyx.org/pub/lyx/stable/%(echo %{version}|cut -d. -f1-2).x/%{name}-%{version}.tar.xz
-%endif
+Version:	2.4.0
+Release:	%{?beta:0.%{beta}.}1
+Source0:	https://ftp.lip6.fr/pub/lyx/%{?beta:devel}%{!?beta:stable}/%(echo %{version}|cut -d. -f1-2).x/lyx-%{version}.tar.xz
 Group:		Office
 License:	GPLv2+
 Url:		http://www.lyx.org/
@@ -32,12 +27,11 @@ BuildRequires:	boost-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(hunspell)
-BuildRequires:	cmake(Qt5Core)
-BuildRequires:	cmake(Qt5Concurrent)
-BuildRequires:	cmake(Qt5Gui)
-BuildRequires:	cmake(Qt5Widgets)
-BuildRequires:	cmake(Qt5X11Extras)
-BuildRequires:	cmake(Qt5Svg)
+BuildRequires:	cmake(Qt6Core)
+BuildRequires:	cmake(Qt6Concurrent)
+BuildRequires:	cmake(Qt6Gui)
+BuildRequires:	cmake(Qt6Widgets)
+BuildRequires:	cmake(Qt6Svg)
 BuildRequires:	pkgconfig(enchant-2)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	pkgconfig(zlib)
@@ -45,6 +39,12 @@ Requires:	fonts-ttf-latex
 Requires:	xdg-utils
 Requires:	texlive
 Requires:	texlive-scheme-full
+BuildSystem:	autotools
+BuildOption:	--without-included-boost
+BuildOption:	--enable-optimization="%{optflags}"
+BuildOption:	--enable-qt6
+BuildOption:	--with-enchant
+BuildOption:	--with-hunspell
 
 %description
 LyX is a modern approach of writing documents with a computer
@@ -57,24 +57,7 @@ setting will be done by the computer, not the author.  With LyX
 the author can concentrate on the contents of his writing,
 since the computer will take care of the look.
 
-%prep
-%autosetup -p1 -n %{name}-2.3.7
-autoreconf -fi -Iconfig
-
-%build
-%configure \
-	--disable-rpath \
-	--without-included-boost \
-	--enable-optimization="%{optflags}" \
-	--enable-qt5 \
-	--with-enchant \
-	--with-hunspell \
-	--disable-silent-rules
-%make_build QT_MOC=%{_libdir}/qt5/bin/moc QT_RCC=%{_libdir}/qt5/bin/rcc QT_UIC=%{_libdir}/qt5/bin/uic
-
-%install
-%make_install
-
+%install -a
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/lyx.desktop << EOF
 [Desktop Entry]
@@ -135,11 +118,9 @@ cd %{_datadir}/lyx
 %{_bindir}/tex2lyx
 %{_datadir}/applications/lyx.desktop
 %{_datadir}/texmf/tex/latex/lyx
-#{_datadir}/%{name}/__pycache__
-#{_datadir}/%{name}/scripts/__pycache__
 %{_liconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_iconsdir}/hicolor/*/apps/%{name}.*
 %{_miconsdir}/%{name}.png
 %{_mandir}/man1/*
-
+%{_datadir}/metainfo/org.lyx.LyX.metainfo.xml

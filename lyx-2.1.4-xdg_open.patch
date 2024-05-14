@@ -1,6 +1,17 @@
---- lyx-2.3.0rc1/lib/configure.py.0000~	2018-01-25 15:33:22.675184434 +0100
-+++ lyx-2.3.0rc1/lib/configure.py	2018-01-25 15:40:02.422046995 +0100
-@@ -628,7 +628,7 @@ def checkFormatEntries(dtl_tools):
+diff -up lyx-2.4.0/lib/configure.py.1~ lyx-2.4.0/lib/configure.py
+--- lyx-2.4.0/lib/configure.py.1~	2024-05-13 23:39:54.000000000 +0200
++++ lyx-2.4.0/lib/configure.py	2024-05-15 00:52:42.826615559 +0200
+@@ -716,7 +716,8 @@ def checkModule(module):
+       return False
+ 
+ 
+-texteditors = ['xemacs', 'gvim', 'kedit', 'kwrite', 'kate',
++texteditors = ['xdg-open', 'kde-open', 'kde-open5', 'kwrite', 'kate', 'kedit',
++               'gvim', 'xemacs', 'emacs',
+                'nedit', 'gedit', 'geany', 'leafpad', 'mousepad',
+                'xed', 'notepad', 'WinEdt', 'WinShell', 'PSPad']
+ 
+@@ -756,7 +757,7 @@ def checkFormatEntries(dtl_tools):
  \Format xbm        xbm     XBM                    "" "%s"	"%s"	""	"image/x-xbitmap"
  \Format xpm        xpm     XPM                    "" "%s"	"%s"	""	"image/x-xpixmap"'''
      path, iv = checkViewerNoRC('a raster image viewer',
@@ -9,22 +20,8 @@
           'eog', 'xviewer', 'ristretto', 'gpicview', 'lximage-qt',
           'xdg-open', 'gimp-remote', 'gimp'],
          rc_entry = [imageformats])
-@@ -637,7 +637,7 @@ def checkFormatEntries(dtl_tools):
-     addToRC(imageformats % ((iv, ie)*10))
-     #
-     checkViewerEditor('a text editor',
--        ['xemacs', 'gvim', 'kedit', 'kwrite', 'kate',
-+        ['xdg-open', 'kde-open5', 'kwrite', 'kate', 'gvim', 'kedit', 'xemacs',
-          'nedit', 'gedit', 'geany', 'leafpad', 'mousepad', 'xed', 'notepad'],
-         rc_entry = [r'''\Format asciichess asc    "Plain text (chess output)"  "" ""	"%%"	""	""
- \Format docbook    sgml    DocBook                B  ""	"%%"	"document,menu=export"	""
-@@ -666,18 +666,18 @@ def checkFormatEntries(dtl_tools):
- \Format beamer.info pdf.info   "Info (Beamer)"         "" ""   "%%"    "document,menu=export"	""''' ])
-    #Lilypond files have special editors, but fall back to plain text editors
-     checkViewerEditor('a lilypond editor',
--        ['frescobaldi', 'xemacs', 'gvim', 'kedit', 'kwrite', 'kate',
-+        ['frescobaldi', 'xdg-open', 'kde-open5', 'kedit', 'kwrite', 'kate', 'gvim', 'xemacs',
-          'nedit', 'gedit', 'geany', 'leafpad', 'mousepad', 'xed', 'notepad'],
+@@ -795,7 +796,7 @@ def checkFormatEntries(dtl_tools):
+         ['frescobaldi'] + texteditors,
          rc_entry = [r'''\Format lilypond   ly     "LilyPond music"        "" ""	"%%"	"vector"	"text/x-lilypond"''' ])
     #Spreadsheets using ssconvert from gnumeric
 -    checkViewer('gnumeric spreadsheet software', ['gnumeric'],
@@ -32,42 +29,43 @@
        rc_entry = [r'''\Format gnumeric gnumeric "Gnumeric spreadsheet" "" ""    "%%"   "document"	"application/x-gnumeric"
  \Format excel      xls    "Excel spreadsheet"      "" "" "%%"    "document"	"application/vnd.ms-excel"
  \Format excel2     xlsx   "MS Excel Office Open XML" "" "" "%%" "document"	"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
- \Format html_table html   "HTML Table (for spreadsheets)"      "" "" "%%"    "document"	"text/html"
+@@ -803,7 +804,7 @@ def checkFormatEntries(dtl_tools):
+ \Format html_table html   "HTML Table (for spreadsheets)"      "" "" "%%"    "document"	""
  \Format oocalc     ods    "OpenDocument spreadsheet" "" "" "%%"    "document"	"application/vnd.oasis.opendocument.spreadsheet"'''])
   #
 -    checkViewer('an HTML previewer', ['firefox', 'mozilla file://$$p$$i', 'netscape'],
-+    checkViewer('an HTML previewer', ['kde-open5', 'xdg-open', 'firefox', 'mozilla file://$$p$$i', 'netscape', 'chromium-browser', 'chromium-browser-dev'],
++    checkViewer('an HTML previewer', ['xdg-open', 'kde-open', 'kde-open5', 'falkon', 'chromium', 'firefox', 'mozilla file://$$p$$i', 'netscape'],
          rc_entry = [r'\Format xhtml      xhtml   "LyXHTML"              y "%%" ""    "document,menu=export"	"application/xhtml+xml"'])
   #
      checkEditor('a BibTeX editor', ['jabref', 'JabRef',
-@@ -691,7 +691,7 @@ def checkFormatEntries(dtl_tools):
+@@ -815,7 +816,7 @@ def checkFormatEntries(dtl_tools):
      #checkProg('a Postscript interpreter', ['gs'],
      #  rc_entry = [ r'\ps_command "%%"' ])
      checkViewer('a Postscript previewer',
 -                ['kghostview', 'okular', 'qpdfview --unique',
-+                ['xdg-open', 'kde-open5', 'okular', 'kghostview', 'qpdfview --unique',
++                ['xdg-open', 'kde-open', 'kde-open5', 'okular', 'kghostview', 'qpdfview --unique',
                   'evince', 'xreader',
                   'gv', 'ghostview -swap', 'gsview64', 'gsview32'],
          rc_entry = [r'''\Format eps        eps     EPS                    "" "%%"	""	"vector"	"image/x-eps"
-@@ -702,7 +702,7 @@ def checkFormatEntries(dtl_tools):
+@@ -826,7 +827,7 @@ def checkFormatEntries(dtl_tools):
      # maybe use "bestApplication()" from https://github.com/jleclanche/python-mime
      # the MIME type is set for pdf6, because that one needs to be autodetectable by libmime
      checkViewer('a PDF previewer',
 -                ['pdfview', 'kpdf', 'okular', 'qpdfview --unique',
-+                ['xdg-open', 'kde-open5', 'okular', 'pdfview', 'kpdf', 'qpdfview --unique',
++                ['xdg-open', 'kde-open', 'kde-open5', 'okular', 'pdfview', 'kpdf', 'qpdfview --unique',
                   'evince', 'xreader', 'kghostview', 'xpdf', 'SumatraPDF',
-                  'acrobat', 'acroread', 'mupdf',
+                  'acrobat', 'acroread', 'mupdf', 'Skim.app',
                   'gv', 'ghostview', 'AcroRd32', 'gsview64', 'gsview32'],
-@@ -715,7 +715,7 @@ def checkFormatEntries(dtl_tools):
- \Format pdf7       pdf    "PDF (cropped)"         "" "%%"	""	"document,vector"	""
- \Format pdf8       pdf    "PDF (lower resolution)"         "" "%%"	""	"document,vector"	""'''])
+@@ -840,7 +841,7 @@ def checkFormatEntries(dtl_tools):
+ \Format pdf8       pdf    "PDF (lower resolution)"         "" "%%"	""	"document,vector"	""
+ \Format pdf9       pdf    "PDF (DocBook)"         "" "%%"	""	"document,vector,menu=export"	""'''])
      #
 -    checkViewer('a DVI previewer', ['xdvi', 'kdvi', 'okular',
-+    checkViewer('a DVI previewer', ['xdg-open', 'kde-open5', 'okular', 'xdvi', 'kdvi',
++    checkViewer('a DVI previewer', ['xdg-open', 'kde-open', 'kde-open5', 'okular', 'xdvi', 'kdvi',
                                      'evince', 'xreader',
                                      'yap', 'dviout -Set=!m'],
          rc_entry = [r'''\Format dvi        dvi     DVI                    D  "%%"	""	"document,vector,menu=export"	"application/x-dvi"
-@@ -724,7 +724,7 @@ def checkFormatEntries(dtl_tools):
+@@ -849,7 +850,7 @@ def checkFormatEntries(dtl_tools):
          # Windows only: DraftDVI
          addToRC(r'\Format dvi2       dvi     DraftDVI               ""	""	""	"vector"	""')
      #
