@@ -36,6 +36,7 @@ BuildRequires:	cmake(Qt6SvgWidgets)
 BuildRequires:	pkgconfig(enchant-2)
 BuildRequires:	pkgconfig(xpm)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(xkbcommon)
 Requires:	fonts-ttf-latex 
 Requires:	xdg-utils
 Requires:	texlive
