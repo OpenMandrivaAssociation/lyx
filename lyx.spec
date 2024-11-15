@@ -2,7 +2,7 @@
 
 Summary:	Word processor with a LaTeX backend
 Name:		lyx
-Version:	2.4.1
+Version:	2.4.2.1
 Release:	%{?beta:0.%{beta}.}1
 Source0:	https://ftp.lip6.fr/pub/lyx/%{?beta:devel}%{!?beta:stable}/%(echo %{version}|cut -d. -f1-2).x/lyx-%{version}.tar.xz
 Group:		Office
