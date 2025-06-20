@@ -1,6 +1,6 @@
-diff -up lyx-2.4.0/lib/configure.py.1~ lyx-2.4.0/lib/configure.py
---- lyx-2.4.0/lib/configure.py.1~	2024-05-13 23:39:54.000000000 +0200
-+++ lyx-2.4.0/lib/configure.py	2024-05-15 00:52:42.826615559 +0200
+diff -up lyx-2.4.4/lib/configure.py.1~ lyx-2.4.4/lib/configure.py
+--- lyx-2.4.4/lib/configure.py.1~	2025-06-05 23:39:49.000000000 +0200
++++ lyx-2.4.4/lib/configure.py	2025-06-20 22:29:22.825685519 +0200
 @@ -716,7 +716,8 @@ def checkModule(module):
        return False
  
@@ -43,8 +43,8 @@ diff -up lyx-2.4.0/lib/configure.py.1~ lyx-2.4.0/lib/configure.py
      #  rc_entry = [ r'\ps_command "%%"' ])
      checkViewer('a Postscript previewer',
 -                ['kghostview', 'okular', 'qpdfview --unique',
-+                ['xdg-open', 'kde-open', 'kde-open5', 'okular', 'kghostview', 'qpdfview --unique',
-                  'evince', 'xreader',
++                ['xdg-open', 'okular', 'kghostview', 'qpdfview --unique',
+                  'evince', 'papers', 'xreader',
                   'gv', 'ghostview -swap', 'gsview64', 'gsview32'],
          rc_entry = [r'''\Format eps        eps     EPS                    "" "%%"	""	"vector"	"image/x-eps"
 @@ -826,7 +827,7 @@ def checkFormatEntries(dtl_tools):
@@ -52,8 +52,8 @@ diff -up lyx-2.4.0/lib/configure.py.1~ lyx-2.4.0/lib/configure.py
      # the MIME type is set for pdf6, because that one needs to be autodetectable by libmime
      checkViewer('a PDF previewer',
 -                ['pdfview', 'kpdf', 'okular', 'qpdfview --unique',
-+                ['xdg-open', 'kde-open', 'kde-open5', 'okular', 'pdfview', 'kpdf', 'qpdfview --unique',
-                  'evince', 'xreader', 'kghostview', 'xpdf', 'SumatraPDF',
++                ['xdg-open', 'okular', 'pdfview', 'kpdf', 'okular', 'qpdfview --unique',
+                  'evince', 'papers', 'xreader', 'kghostview', 'xpdf', 'SumatraPDF',
                   'acrobat', 'acroread', 'mupdf', 'Skim.app',
                   'gv', 'ghostview', 'AcroRd32', 'gsview64', 'gsview32'],
 @@ -840,7 +841,7 @@ def checkFormatEntries(dtl_tools):
