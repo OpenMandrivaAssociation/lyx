@@ -14,6 +14,10 @@ Patch0:		lyx-2.1.4-xdg_open.patch
 #Patch1:		lyx-2.3.2-boost-1.69.patch
 # weird but necessary to compare the supported qt version
 # see http://comments.gmane.org/gmane.editors.lyx.devel/137498
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	bc
 BuildRequires:	gettext
 BuildRequires:	ghostscript
