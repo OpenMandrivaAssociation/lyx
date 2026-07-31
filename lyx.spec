@@ -2,7 +2,7 @@
 
 Summary:	Word processor with a LaTeX backend
 Name:		lyx
-Version:	2.5.0
+Version:	2.5.1
 Release:	%{?beta:0.%{beta}.}1
 Source0:	https://ftp.lip6.fr/pub/lyx/%{?beta:devel}%{!?beta:stable}/%(echo %{version}|cut -d. -f1-2).x/lyx-%{version}.tar.xz
 Group:		Office
@@ -10,7 +10,7 @@ License:	GPLv2+
 Url:		https://www.lyx.org/
 # use xdg-open instead of hard coded applications to open files
 # sent to upstream developers by fhimpe on 4 Jun 2009
-Patch0:		lyx-2.1.4-xdg_open.patch
+# dropped (no longer applies): Patch0:		lyx-2.1.4-xdg_open.patch
 #Patch1:		lyx-2.3.2-boost-1.69.patch
 # weird but necessary to compare the supported qt version
 # see http://comments.gmane.org/gmane.editors.lyx.devel/137498
