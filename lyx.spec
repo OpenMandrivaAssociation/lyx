@@ -2,7 +2,7 @@
 
 Summary:	Word processor with a LaTeX backend
 Name:		lyx
-Version:	2.5.1
+Version:	2.5.2
 Release:	%{?beta:0.%{beta}.}1
 Source0:	https://ftp.lip6.fr/pub/lyx/%{?beta:devel}%{!?beta:stable}/%(echo %{version}|cut -d. -f1-2).x/lyx-%{version}.tar.xz
 Group:		Office
@@ -16,8 +16,6 @@ Url:		https://www.lyx.org/
 # see http://comments.gmane.org/gmane.editors.lyx.devel/137498
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool-base
-BuildRequires:	slibtool
 BuildRequires:	bc
 BuildRequires:	gettext
 BuildRequires:	ghostscript
@@ -27,7 +25,6 @@ BuildRequires:	pkgconfig(python3)
 BuildRequires:	sgml-tools
 BuildRequires:	texinfo
 BuildRequires:	texlive-collection-latex
-BuildRequires:	boost-devel
 BuildRequires:	gettext-devel
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(hunspell)
@@ -42,11 +39,11 @@ BuildRequires:	pkgconfig(xpm)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(xkbcommon)
 Requires:	fonts-ttf-latex 
+Requires:	python
 Requires:	xdg-utils
 Requires:	texlive
 Requires:	texlive-scheme-full
 BuildSystem:	autotools
-BuildOption:	--without-included-boost
 BuildOption:	--enable-optimization="%{optflags}"
 BuildOption:	--enable-qt6
 BuildOption:	--with-enchant
@@ -91,6 +88,7 @@ mkdir -p %{buildroot}${TEXMF}/tex/latex
 cp -r %{buildroot}%{_datadir}/lyx/tex %{buildroot}${TEXMF}/tex/latex/lyx
 chmod +x %{buildroot}%{_datadir}/lyx/configure.py
 rm -f %{buildroot}%{_bindir}/listerrors
+find %{buildroot}%{_datadir}/lyx -type f -name '*.py' -exec sed -i '1s|python3|python|' {} +
 
 # (tpg) fix bug #1190
 #sed -i -e "s,/usr/bin/env python,%{__python2},g" %{buildroot}%{_datadir}/lyx/configure.py
