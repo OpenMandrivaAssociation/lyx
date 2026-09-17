@@ -42,7 +42,7 @@ Requires:	fonts-ttf-latex
 Requires:	python
 Requires:	xdg-utils
 Requires:	texlive
-Requires:	texlive-scheme-full
+Recommends:	texlive-scheme-full
 BuildSystem:	autotools
 BuildOption:	--enable-optimization="%{optflags}"
 BuildOption:	--enable-qt6
